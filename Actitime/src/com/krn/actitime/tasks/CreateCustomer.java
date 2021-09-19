@@ -15,5 +15,6 @@ public class CreateCustomer extends BaseClass{
 		driver.findElement(By.xpath("//input[@class='inputFieldWithPlaceholder newNameField inputNameField']")).sendKeys("ankur");
 		driver.findElement(By.xpath("//textarea[@placeholder='Enter Customer Description']")).sendKeys("this is test desc");
 		driver.findElement(By.xpath("//div[contains(text(),'Create Customer')]")).click();
+		System.out.println("Hello");
 	}
 }
