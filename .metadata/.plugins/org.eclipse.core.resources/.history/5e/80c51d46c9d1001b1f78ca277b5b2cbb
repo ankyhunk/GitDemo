@@ -1,0 +1,44 @@
+package demopack1;
+
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Create {
+
+	public static void main(String[] args) {
+		WebDriver driver;
+		driver=new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.actitime.com");
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+
+		driver.findElement(By.id("username")).sendKeys("admin");
+		driver.findElement(By.name("pwd")).sendKeys("manager");
+		driver.findElement(By.id("loginButton")).click();
+		driver.findElement(By.xpath("//a[@href='/tasks/tasklist.do']")).click();
+		// Actions act=new Actions(driver);
+		driver.findElement(By.xpath("//div[text()='Add New']")).click();
+		//  act.moveToElement(addMenu).perform();
+		driver.findElement(By.xpath("//div[@class='item createNewCustomer']")).click();
+		Set<String> allWindows=driver.getWindowHandles();
+		Iterator<String>it=allWindows.iterator();
+		String tasks=it.next();
+		String create=it.next();
+		System.out.println(tasks);
+		System.out.println(create);
+		driver.switchTo().window(create);
+
+		driver.findElement(By.xpath("//input[@placeholder='Enter Customer Name'][2]")).sendKeys("prathap");
+		driver.findElement(By.xpath("//textarea[@placeholder='Enter Customer Description']")).sendKeys("this is test desc");
+		driver.findElement(By.xpath("//div[contains(text(),'Create Customer')]")).click();
+	}
+
+
+}
+
+}
